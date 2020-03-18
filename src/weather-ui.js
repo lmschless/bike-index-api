@@ -2,18 +2,22 @@ import { BikeService } from './weather-service.js';
 
 $(document).ready(function() {
 	$('#weatherLocation').click(function() {
-		const color = $('#location').val();
+		const manufacturer = $('#location').val();
+		const location = 'portland';
 		$('#location').val('');
 
 		(async () => {
 			let bikeService = new BikeService();
-			const response = await bikeService.getBikeByColor(color);
+			const response = await bikeService.getBikeByManufacturer(manufacturer, location);
 			getElements(response);
 		})();
 
 		const getElements = function(response) {
+			let totalBikes = response.stolen + response.non;
 			if (response) {
-				$('.showHumidity').text(`The humidity in ${color} is ${response.bikes[0].title}`);
+				$('.showHumidity').append(
+					`${response.stolen} ${manufacturer} bikes have been stolen within 10 miles of ${location} out of ${totalBikes} total registered ${manufacturer} bikes.`
+				);
 				console.log(response);
 				$('.showTemp').text(`The temperature in Kelvins is ${response} degrees.`);
 			} else {

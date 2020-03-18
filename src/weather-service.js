@@ -3,10 +3,10 @@ import './weather-ui.js';
 
 // async/await method for api call
 export class BikeService {
-	async getBikeByColor(color) {
+	async getBikeByManufacturer(manufacturer, location) {
 		try {
 			let response = await fetch(
-				`https://bikeindex.org:443/api/v3/search?page=1&per_page=25&manufacturer=${color}&location=IP&distance=10&stolenness=stolen&access_token= 1VdUfjrvxjFEdED6cdXn2_btBVq96BcJ3SOd7-0IuDQ  `
+				`https://bikeindex.org:443/api/v3/search/count?&manufacturer=${manufacturer}&location=${location}&distance=10&stolenness=stolen&access_token= 1VdUfjrvxjFEdED6cdXn2_btBVq96BcJ3SOd7-0IuDQ`
 			);
 			let jsonifiedResponse;
 			if (response.ok && response.status == 200) {
