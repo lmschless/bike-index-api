@@ -2,11 +2,11 @@ import './weather-ui.js';
 // import $ from 'jquery';
 
 // async/await method for api call
-export class WeatherService {
-	async getWeatherByCity(city) {
+export class BikeService {
+	async getBikeByColor(color) {
 		try {
 			let response = await fetch(
-				`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`
+				`https://bikeindex.org:443/api/v3/search?page=1&per_page=25&manufacturer=${color}&location=IP&distance=10&stolenness=stolen&access_token= 1VdUfjrvxjFEdED6cdXn2_btBVq96BcJ3SOd7-0IuDQ  `
 			);
 			let jsonifiedResponse;
 			if (response.ok && response.status == 200) {
